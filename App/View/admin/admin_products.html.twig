@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="hu" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mester hármas webshop</title>
+    <link rel="stylesheet" href="App/css/admin.css">
+    <link rel="icon" href="/App/images/logoTitle.png">
+    <!-- Boxicons CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/App/images/logo.png" alt="logo" style="width: 50px;margin:5px;">
+      <span class="logo_name">Mester hármas</span>
+    </div>
+      <ul class="nav-links sidebarpadding">
+        <li>
+          <a href="/adminPage">
+            <i class='bx bx-pie-chart-alt-2'></i>
+            <span class="links_name">Statisztikák</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminProducts" class="active">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">Termékek</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminOrders">
+            <i class='bx bx-book-alt'></i>
+            <span class="links_name">Rendelések</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminUsers">
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Felhasználók</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminLog">
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Események</span>
+          </a>
+        </li>
+        <li>
+          <a href="/welcomePage">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Beállítások</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="/adminLogout">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Kijelentkezés</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Termékek</span>
+      </div>
+      <form class="col-5 col-md-3 col-sm-3 col-lg-3 mb-3 mb-lg-0 me-lg-3" role="search" method="POST" action="/adminProductSearch">
+      <div class="search-box">
+        <input class="form-control" type="search" name="query" id="query" placeholder="Keresés...">
+        <button class="bx bx-search" type="search" name="search"></button>
+      </div>
+      </form>
+      <div class="profile-details">
+        <img class="profile-img" src="/App/images/user.png" alt="" />
+        <span class="admin_name">{{admin.felhasznalonev}}</span>
+      </div>
+    </nav>
+
+    <div class="home-content container">
+    <a href="/adminNewProduct"><input type="button" class="btn btn-success" value="Új termék"></a>
+    <a href="/adminProductCategories"><input type="button" class="btn btn-success" value="Termék kategóriák"></a>
+    <a href="/adminBrands"><input type="button" class="btn btn-success" value="Márkák"></a>
+    <br><br>
+      <select name="nem" id="nem" onchange="adminNemKategoriaMarkaSzures()">
+      {% if nemId == 0 %}
+        <option value="0" selected>Összes nem</option>
+      {% else %}
+        <option value="0">Összes nem</option>
+      {% endif %}
+        {% for nem in nemek %}
+          {% if nemId == nem.id %}
+            <option value="{{nem.id}}" selected>{{nem.megnevezes}}</option>
+          {% else %}
+            <option value="{{nem.id}}">{{nem.megnevezes}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <select name="kategoria" id="kategoria" onchange="adminNemKategoriaMarkaSzures()">
+        {% if kategoria_id == 1 %}
+          <option value="1" selected>Összes kategória</option>
+        {% else %}
+          <option value="1">Összes kategória</option>
+        {% endif %}
+        {% for kategoria in termek_kategoria %}
+          {% if kategoria.id == kategoria_id %}
+            <option value="{{kategoria.id}}" selected>{{kategoria.nev}}</option>
+          {% else %}
+            <option value="{{kategoria.id}}">{{kategoria.nev}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <select name="marka" id="marka" onchange="adminNemKategoriaMarkaSzures()">
+        {% if markaId == 0 %}
+          <option value="0" selected>Összes márka</option>
+        {% else %}
+          <option value="0">Összes márka</option>
+        {% endif %}
+        {% for marka in markak %}
+          {% if markaId == marka.id %}
+            <option value="{{marka.id}}" selected>{{marka.markanev}}</option>
+          {% else %}
+            <option value="{{marka.id}}">{{marka.markanev}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Név</th>
+                    <th scope="col">Cikkszám</th>
+                    <th scope="col">Márkanév</th>
+                    <th scope="col">Nem</th>
+                    <th scope="col">Kategória</th>
+                    <th scope="col">Ár</th>
+                    <th scope="col">Módosítás</th>
+                    <th scope="col">Törlés</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for termek in termekek %}
+            {% set kategoria_select = 1 %}
+            {% for id in termek_termek_kategoria %}
+              {% if id.termek_id == termek.id %}
+                {% for kategoria in termek_kategoria %}
+                  {% if id.kategoria_id == kategoria.id and kategoria.id > 1 %}
+                    {% set kategoria_select = kategoria.id %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+                <tr>
+                    <th scope="row">{{termek.id}}</th>
+                    <td>{{termek.nev}}</td>
+                    <td>{{termek.cikkszam}}</td>
+                    <td>{{termek.markanev}}</td>
+                    <td>{{termek.megnevezes}}</td>
+                    {% for kategoria in termek_kategoria %}
+                      {% if kategoria.id == kategoria_select %}
+                        <td>{{kategoria.nev}}</td>
+                      {% endif %}
+                    {% endfor %}
+                    <td>{{termek.ar}}</td>
+                    <td><a href="index.php?productId={{termek.id}}"><button class="btn btn-warning">Módosítás</button></a></td>
+                    <td><a href="index.php?deleteId={{termek.id}}"><button class="btn btn-danger">Töröl</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </section>
+
+  <script src="/App/js/admin.js"></script>
+  <script src="/App/js/myScript.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+{% set header = logedin %}
+{% include 'header.html.twig' with {'loginHeader': header} %}
+
+<head>
+	<link rel="stylesheet" href="/App/css/product.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-md-8 col-lg-8 col-xl-6 col-8 termekKep">
+				<div class="row">
+					{% if kepek|length == 1 %}
+					<div class="col-12">
+						<img src="/App/images/Clothes/Men/{{kepek[0]}}" style="margin: auto;"
+							class="img-fluid product_img" alt="item_picture" onclick="FullView(this.src)">
+					</div>
+					{% else %}
+					{% for kep in kepek %}
+					<div class="col-6">
+						<img src="/App/images/Clothes/Men/{{kep}}" class="img-fluid product_img"
+							style="margin-bottom: 10px;" alt="item_picture" onclick="FullView(this.src)">
+					</div>
+
+					{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-8 col-lg-8 col-xl-6 col-8 short-description">
+				<form id="formKosar">
+					<input type="hidden" id="productId" name="productId" value="{{product.id}}">
+					<input type="hidden" id="productAr" name="productAr" value="{{product.ar}}">
+					<input type="hidden" name="mod" value="hozzaad">
+					<h3>{{product.nev}}</h3>
+					{% set formazottAr= product.ar|number_format(0,',',' ') ~ ' Ft'%}
+					<p class="price">{{formazottAr}}</p>
+					<h6>Válassz méretet</h6>
+					<select name="meret" class="form-select">
+						{% for mer in meret %}
+						<option value="{{mer.id}}">{{mer.megnevezes}}</option>
+						{% endfor %}
+					</select>
+					<br>
+					<label for="mennyiseg" class="form-label">
+						<h6>Mennyiség</h6>
+					</label>
+					<input type="number" min="1" max="10" value="1" class="form-control mennyiseg" id="mennyiseg"
+						name="mennyiseg">
+					<input type="button" class="addToCartBtn" onclick="ellenorzes()" value="Kosárba tesz">
+					<p class="description">{{product.leiras}}</p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="FullImageView">
+		<img id="FullImage">
+		<span id="CloseButton" onclick="CloseFullView()">&times;</span>
+	</div>
+	<script>
+
+		function ellenorzes() {
+			{% if logedin %}
+			alert('Előbb be kell jelentkeznie!');
+			{% else %}
+			kosarbaTesz('formKosar');
+			Swal.fire(
+				'Sikeres kosárba helyezés!',
+				'A termék a kosaradba került!',
+				'success'
+			);
+			{% endif %}
+		}
+
+		function FullView(ImgLink) {
+			document.getElementById("FullImage").src = ImgLink;
+			document.getElementById("FullImageView").style.display = "block";
+			document.body.style.overflow = 'hidden';
+			
+		}
+		
+
+		function CloseFullView() {
+			document.getElementById("FullImageView").style.display = "none";
+			document.body.style.overflowY = 'scroll';
+		}
+	</script>
+	{% include 'footer.html.twig' %}
+</body>

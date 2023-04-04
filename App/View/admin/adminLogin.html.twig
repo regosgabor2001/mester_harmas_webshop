@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hu">
+ 
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=
+    "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="App/css/adminLoginRegister.css">
+    <link rel="icon" href="/App/images/logoTitle.png">
+    <title>Mester hármas webshop</title>
+</head>
+ 
+<body>
+    <form action="/adminLogin" method="post">
+        <div class="login-box" style="width: 400px;">
+            <h1 style="width: 375px;">Bejelentkezés</h1>
+ 
+            <div class="textbox">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <input type="text" placeholder="Email Cím" name="email" required style="width: 600px;">
+            </div>
+ 
+            <div class="textbox">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <input type="password" placeholder="Jelszó" name="password" required style="width: 600px; ">
+            </div>
+ 
+            <input class="button" type="submit" name="login" value="Bejelentkezés">
+
+            <a href="/adminRegister"><input class="button" type="button" value="Regisztráció"></a>
+
+        </div>
+
+    </form>
+
+</body>
+ 
+</html>

@@ -1,0 +1,96 @@
+   <section class="navbar_section">
+    <nav id="navbar_top" class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/products"><img src="/App/images/mesterHarmas.png" alt="logo" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+            {% if activePage == "products" %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/products">Főoldal</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/products">Főoldal</a>
+            </li>
+            {% endif %}
+
+            {% if activePage == "ferfi" %}
+            <li class="nav-item dropdown-navbar">
+              <a class="nav-link active" href="/ferfiOldal" role="button">
+                Férfi
+              </a>
+            </li>
+            {% else %}
+            <li class="nav-item dropdown-navbar">
+              <a class="nav-link" href="/ferfiOldal" role="button">
+                Férfi
+              </a>
+            </li>
+            {% endif %}
+
+            {% if activePage == "noi" %}
+            <li class="nav-item dropdown-navbar">
+              <a class="nav-link active" href="/noiOldal" role="button">
+                Női
+              </a>             
+            </li>
+            {% else %}
+            <li class="nav-item dropdown-navbar">
+              <a class="nav-link" href="/noiOldal" role="button">
+                Női
+              </a>             
+            </li>
+            {% endif %}
+
+            {% if activePage == "gyermek" %}
+            <li class="nav-item dropdown-navbar">
+              <a class="nav-link active" href="/gyermekOldal" role="button">
+                Gyermek
+              </a>              
+            </li>
+            {% else %}
+            <li class="nav-item dropdown-navbar">
+              <a class="nav-link" href="/gyermekOldal" role="button">
+                Gyermek
+              </a>              
+            </li>
+            {% endif %}
+          </ul>
+          <form class="d-flex kereses" role="search" method="POST" action="/search">
+            <input class="form-control me-2" name="query" type="search" placeholder="Termék keresés" id="kereses" onkeyup="success()" aria-label="Search" />
+            <button class="btn btn-outline-dark" id="keresesGomb" type="submit" disabled>
+              Keresés
+            </button>
+          </form>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="profile-img" src="/App/images/user.png" alt="" />
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                {% if login %}
+                  <a class="dropdown-item" href="/loginPage">Bejelentkezés</a>
+                {% else %}
+                  <a class="dropdown-item" href="/welcomePage">Profil</a>
+                  <a class="dropdown-item" href="/shippingPage">Szállítási adatok</a>
+                  <a class="dropdown-item" href="http://localhost:8000/index.php?usertoken={{user.token}}">Jelszó megváltoztatása</a>
+                  <a href="/logout" class="dropdown-item">Kijelentkezés</a>
+                {% endif %}
+                </li>
+              </ul>
+            </li>
+            <a class="kosar" href="/cartItems"><img class="cartIcon" src="/App/images/cartIcon.svg" alt="cartIcon"><span></span></a>
+            <i class="uil uil-moon toggle-btn"></i>
+            <!--<span id="kosarOsszegTmpStr" class="invisible"></span>
+            <span id="kosarOsszegTmpNum" class="invisible"></span>-->
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </section>

@@ -1,0 +1,111 @@
+{% set header = logedin %}
+{% set activePage = "products" %}
+{% include 'header.html.twig' with {'loginHeader': header, 'activePage': activePage} %}
+<section class="margin-top">
+	<div class="row">
+		<div class="col-12 col-md-3">
+			<h4 class="fedezd_fel">Fedezd fel</h4>
+			<hr>
+			<h5 class="szoveg">Vásároljon a legújabb trendek közül a divatvilágban.</h5>
+		</div>
+		<div class="col-8 col-md-3 kategoria">
+			<img src="/App/images/Clothes/Gyermek/marketing-homepage.webp" class="kep d-block w-100" alt="..."/>
+			
+		</div>
+		<div class="col-8 col-md-3 kategoria">
+			<img src="/App/images/Clothes/Gyermek/marketing-homepage (1).webp" class="kep d-block w-100" alt="..."/>
+		</div>
+		<div class="col-8 col-md-3 kategoria">
+			<img src="/App/images/Clothes/Gyermek/marketing-homepage (2).webp" class="kep d-block w-100" alt="..."/>
+		</div>
+	</div>
+</section>
+<section class="">
+	<div class="row markak">
+		<h2 class="markak-h2 hidden">Válogass világhírű márkák között</h2>
+		<div class="col-6 col-sm-4 col-md-4 col-lg-2 hidden marka">
+			<a href="#footer">
+				<img src="App/images/Clothes/Gyermek/1.jpg" class="img-thumbnail" alt="...">
+			</a>
+			<center>
+				<a href="#footer">
+					<img src="App/images/Clothes/marka_logo/nike.png" class="nike_logo" alt="nike">
+				</a>
+			</center>
+		</div>
+		<div class="col-6 col-sm-4 col-md-4 col-lg-2 hidden marka">
+			<img src="App/images/Clothes/Gyermek/2.jpg" class="img-thumbnail" alt="...">
+			<center>
+				<a href="#">
+					<img src="App/images/Clothes/marka_logo/tommyHilfiger.png" class="tommyHilfiger_logo" alt="tommyHilfiger">
+				</a>
+			</center>
+		</div>
+		<div class="col-6 col-sm-4 col-md-4 col-lg-2 hidden marka">
+			<img src="App/images/Clothes/Gyermek/3.jpg" class="img-thumbnail" alt="...">
+			<center>
+				<a href="#">
+					<img src="App/images/Clothes/marka_logo/adidas.png" class="adidas_logo" alt="adidas">
+				</a>
+			</center>
+		</div>
+		<div class="col-6 col-sm-4 col-md-4 col-lg-2 hidden marka">
+			<img src="App/images/Clothes/Gyermek/4.jpg" class="img-thumbnail" alt="...">
+			<center>
+				<a href="#">
+					<img src="App/images/Clothes/marka_logo/levis.png" class="levis_logo" alt="levis">
+				</a>
+			</center>
+		</div>
+		<div class="col-6 col-sm-4 col-md-4 col-lg-2 hidden marka">
+			<img src="App/images/Clothes/Gyermek/5.jpg" class="img-thumbnail" alt="...">
+			<center>
+				<a href="#">
+					<img src="App/images/Clothes/marka_logo/calvinKlein.png" class="calvinKlein_logo" alt="calvinKlein">
+				</a>
+			</center>
+		</div>
+		<div class="col-6 col-sm-4 col-md-4 col-lg-2 hidden marka">
+			<img src="App/images/Clothes/Gyermek/6.jpg" class="img-thumbnail" alt="...">
+			<center>
+				<a href="#">
+					<img src="App/images/Clothes/marka_logo/poloRalphLauren.png" class="poloRalphLauren_logo" alt="poloRalphLauren">
+				</a>
+			</center>
+		</div>
+	</div>
+</section>
+
+<div class="container">
+	<h1 class="motto">"A magabiztosságod a divatból fakad."</h1>
+</div>
+
+<section class="">
+	<h2 class="container ajanlott-termekek-h2">Ajánlott termékek</h2>
+	<div class="slide-container swiper hidden">
+		<div class="slide-content">
+			<div class="card-wrapper swiper-wrapper">
+				{% for ter in termek %}
+					<div class="card swiper-slide">
+						<div class="image-content">
+							<span class="overlay"></span>
+							<div class="card-image">
+								<img src="App/images/Clothes/Men/{{ter.kep_nev}}" alt="" class="card-img"/>
+							</div>
+						</div>
+						<div class="card-content">
+							<h2 class="name h50">{{ter.nev}}</h2>
+							<p class="description">{{ter.ar}}
+								Ft</p>
+							<a href="/product/{{ter.id}}" class="btn btn-dark">Megtekintés</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="swiper-button-next swiper-navBtn"></div>
+		<div class="swiper-button-prev swiper-navBtn"></div>
+		<div class="swiper-pagination"></div>
+	</div>
+</section>
+{% include 'footer.html.twig' %}

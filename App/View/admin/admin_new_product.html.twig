@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="hu" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mester hármas webshop</title>
+    <link rel="icon" href="/App/images/logoTitle.png">
+    <link rel="stylesheet" href="App/css/admin.css">
+    <!-- Boxicons CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/App/images/logo.png" alt="logo" style="width: 50px;margin:5px;">
+      <span class="logo_name">Mester hármas</span>
+    </div>
+      <ul class="nav-links sidebarpadding">
+        <li>
+          <a href="/adminPage">
+            <i class='bx bx-pie-chart-alt-2'></i>
+            <span class="links_name">Statisztikák</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminProducts" class="active">
+            <i class='bx bx-box'></i>
+            <span class="links_name">Termékek</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminOrders">
+            <i class='bx bx-book-alt'></i>
+            <span class="links_name">Rendelések</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminUsers">
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Felhasználók</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminLog">
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Események</span>
+          </a>
+        </li>
+        <li>
+          <a href="/welcomePage">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Beállítások</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="/adminLogout">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Kijelentkezés</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Új termék</span>
+      </div>
+      <div class="profile-details">
+        <img class="profile-img" src="/App/images/user.png" alt="" />
+        <span class="admin_name">{{admin.felhasznalonev}}</span>
+      </div>
+    </nav>
+
+    <div class="home-content container">
+        <form action="/newProduct" method="POST" enctype="multipart/form-data">
+            <div class="mb-3 form-check">
+                <label for="nev" class="form-label">Név:</label>
+                <input type="text" class="form-control" name="nev" id="nev" required>
+            </div>
+            <div class="mb-3 form-check">
+                <label for="cikkszam" class="form-label">Cikkszám:</label>
+                <input type="text" class="form-control" id="cikkszam" name="cikkszam" required>
+            </div>
+            <div class="mb-3 form-check">
+                <label for="marka" class="form-label">Márka:</label>
+                <select class="form-select" name="marka" id="marka">
+                {% for mar in marka %}
+                  <option value="{{mar.id}}">{{mar.markanev}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3 form-check">
+                <label for="leiras" class="form-label">Leírás:</label>
+                <textarea class="form-control" id="leiras" name="leiras" rows="3"></textarea>
+            </div>
+            <div class="mb-3 form-check">
+                <label for="nem" class="form-label">Nem:</label>
+                <select class="form-select" name="nem" id="nem">
+                {% for n in nem %}
+                  <option value="{{n.id}}">{{n.megnevezes}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3 form-check">
+                <label for="termek_kategoria" class="form-label">Kategória:</label>
+                <select class="form-select" name="termek_kategoria" id="termek_kategoria">
+                {% for kategoria in termek_kategoria %}
+                  <option value="{{kategoria.id}}">{{kategoria.nev}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3 form-check">
+                <label for="ar" class="form-label">Ár:</label>
+                <input type="number" class="form-control" id="ar" name="ar" min="0" required>
+            </div>
+            <div class="mb-3 form-check">
+                <label for="kep" class="form-label">Kép feltöltése:</label>
+                <input type="file" class="form-control" id="kep" name="kep" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="submit" class="btn btn-primary" name="kuld" value="Mentés">
+              <input type="button" class="btn btn-warning" onclick="back()" value="Vissza">
+            </div>
+        </form>
+    </div>
+  </section>
+
+  <script src="App/js/admin.js"></script>
+  <script>
+    function back() {
+          window.history.back();
+    }
+  </script>
+
+</body>
+</html>

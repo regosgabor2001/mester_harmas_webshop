@@ -1,0 +1,88 @@
+{% set header = logedin %}
+{% include 'header.html.twig' with {'loginHeader': header} %}
+
+<head>
+    <link rel="stylesheet" href="/App/css/profile.css">
+</head>
+
+<body class="profile-page">
+    <div class="container-xl">
+        <div class="col-xl-6 col-sm-8 col-md-8 col-lg-8 personal-info center">
+            <form class="urlap form-inline" role="form" action="/shippingInfoChange" method="POST">
+                <h3 class="adatok">Szállítási adatok</h3>
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input class="form-control" type="hidden" name="id" id="id" value="{{user.id}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="szallitasi_cim1">Szállítási cím 1:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="szallitasi_cim1" id="szallitasi_cim1"
+                            value="{{userShipping.szallitasi_cim1}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="szallitasi_cim2">Szállítási cím 2:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="szallitasi_cim2" id="szallitasi_cim2"
+                            value="{{userShipping.szallitasi_cim2}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="varos">Város:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="varos" id="varos" value="{{userShipping.varos}}"
+                            required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="iranyitoszam">Irányítószám:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="iranyitoszam" id="iranyitoszam"
+                            value="{{userShipping.iranyitoszam}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="orszag">Ország:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="orszag" id="orszag"
+                            value="{{userShipping.orszag}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {% if userShipping.telefonszam|length > 0 %}
+                    <label class="col-lg-3 control-label" for="telefonszam">Telefonszám:</label>
+                    <div class="col-lg-8">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">+36</span>
+                            <input type="text" class="form-control" name="telefonszam" id="telefonszam"
+                                value="{{userShipping.telefonszam|slice(2)}}" required placeholder="" aria-label="telefonszam"
+                                aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    {% else %}
+                    <label class="col-lg-3 control-label" for="telefonszam">Telefonszám:</label>
+                    <div class="col-lg-8">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">+36</span>
+                            <input type="text" class="form-control" name="telefonszam" id="telefonszam"
+                                value="{{user.telefonszam|slice(2)}}" required placeholder="" aria-label="telefonszam"
+                                aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="submit" name="submit" id="submit" class="btn btn-success"
+                            value="Változtatások mentése">
+                        <span></span>
+                        <input type="reset" class="btn btn-default" style="color: red;" value="Mégsem">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% include 'footer.html.twig' %}

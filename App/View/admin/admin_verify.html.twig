@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hu">
+ 
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=
+    "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="App/css/adminLoginRegister.css">
+    <link rel="icon" href="/App/images/logoTitle.png">
+    <title>Édes hármas</title>
+</head>
+ 
+<body>
+    <form action="/adminVerify" method="post">
+        <div class="login-box">
+            <h1>Admin felhasználó megerősítése ({{user.felhasznalonev}})</h1>
+            <input type="hidden" name="userId" value="{{user.id}}">
+            <input type="hidden" name="userEmail" value="{{user.email}}">
+            <input type="hidden" name="username" value="{{user.felhasznalonev}}">
+            <input type="hidden" name="userStatus" value="{{user.sztatusz}}">
+            <input type="hidden" name="adminId" value="{{admin.id}}">
+            <input class="button" type="submit" name="megerosit" value='Megerősítés'>
+            <input class="button" type="submit" name="torol" value="Törlés">
+        </div>
+
+    </form>
+
+</body>
+ 
+</html>

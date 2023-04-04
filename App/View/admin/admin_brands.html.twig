@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="hu" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Mester hármas webshop</title>
+    <link rel="stylesheet" href="App/css/admin.css">
+    <link rel="icon" href="/App/images/logoTitle.png">
+    <!-- Boxicons CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="/App/images/logo.png" alt="logo" style="width: 50px;margin:5px;">
+      <span class="logo_name">Mester hármas</span>
+    </div>
+      <ul class="nav-links sidebarpadding">
+        <li>
+          <a href="/adminPage">
+            <i class='bx bx-pie-chart-alt-2'></i>
+            <span class="links_name">Statisztikák</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminProducts" class="active">
+            <i class='bx bx-box'></i>
+            <span class="links_name">Termékek</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminOrders">
+            <i class='bx bx-book-alt'></i>
+            <span class="links_name">Rendelések</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminUsers">
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Felhasználók</span>
+          </a>
+        </li>
+        <li>
+          <a href="/adminLog">
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Események</span>
+          </a>
+        </li>
+        <li>
+          <a href="/welcomePage">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Beállítások</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="/adminLogout">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Kijelentkezés</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Kategóriák</span>
+      </div>
+      <form role="search" method="POST" action="/adminProductSearch">
+      </form>
+      <div class="profile-details">
+        <img class="profile-img" src="/App/images/user.png" alt="" />
+        <span class="admin_name">{{admin.felhasznalonev}}</span>
+      </div>
+    </nav>
+
+    <div class="home-content container">
+    <a href="/adminNewBrand"><input type="button" class="btn btn-success" value="Új márka"></a>
+    <a href="/adminProducts"><input type="button" class="btn btn-success" value="Termékek"></a>
+    <a href="/adminProductCategories"><input type="button" class="btn btn-success" value="Termék kategóriák"></a>
+    <br><br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Név</th>
+                    <th scope="col">Módosítás</th>
+                    <th scope="col">Törlés</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for marka in markak %}
+                <tr>
+                    <th scope="row">{{marka.id}}</th>
+                    <td>{{marka.markanev}}</td>
+                    <td><a href="index.php?brandId={{marka.id}}"><button class="btn btn-warning">Módosítás</button></a></td>
+                    <td><a href="index.php?deleteBrandId={{marka.id}}"><button class="btn btn-danger">Töröl</button></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+  </section>
+
+  <script src="/App/js/admin.js"></script>
+  <script src="/App/js/myScript.js"></script>
+
+</body>
+</html>

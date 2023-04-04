@@ -1,0 +1,26 @@
+{% set header = logedin %}
+{% include 'header.html.twig' with {'loginHeader': header} %}
+<head>
+	<link rel="stylesheet" href="/App/css/ferfi_oldal.css">
+</head>
+<body>
+	<div class="container-sm">
+		<h5 class="display-3 text-left mt-5 page-title">Termék keresés</h5>
+		<div class="row">
+			{% for ter in termek %}
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex align-items-stretch">
+					<div class="card" style="width: 280px;">
+						<img src="/App/images/Clothes/Men/{{ter.kep_nev}}" class="card-img-top" alt="item_picture">
+						<div class="card-body">
+							<h5 class="card-title h50">{{ter.nev}}</h5>
+							<p class="card-text">{{ter.ar}}
+								Ft</p>
+							<a href="/product/{{ter.id}}" class="btn btn-dark">Megtekintés</a>
+						</div>
+					</div>
+
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% include 'footer.html.twig' %}

@@ -1,0 +1,68 @@
+{% set header = logedin %}
+{% include 'header.html.twig' with {'loginHeader': header} %}
+<head>
+    <link rel="stylesheet" href="/App/css/profile.css">
+</head>
+
+<body class="profile-page">
+    <div class="container-xl">
+        <div class="col-xl-7 col-sm-9 col-md-9 col-lg-8 personal-info center">
+            <form class="urlap form-inline" role="form" action="/userInfoChange" method="POST">
+                <h3 class="adatok">Személyes adatok</h3>
+                <div class="form-group">
+                    <div class="col-lg-8">
+                        <input class="form-control" type="hidden" name="id" id="id" value="{{user.id}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="">Email cím:</label>
+                    <div class="col-lg-8">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                            value="{{user.email}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="felhasznalonev">Felhasználónév:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="felhasznalonev" id="felhasznalonev"
+                            value="{{user.felhasznalonev}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="vezeteknev">Vezetéknév:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="vezeteknev" id="vezeteknev"
+                            value="{{user.vezeteknev}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="keresztnev">Keresztnév:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="keresztnev" id="keresztnev"
+                            value="{{user.keresztnev}}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="telefonszam">Telefonszám:</label>
+                    <div class="col-lg-8">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">+36</span>
+                            <input type="text" class="form-control" name="telefonszam" id="telefonszam"
+                                value="{{user.telefonszam|slice(2)}}" required placeholder="" aria-label="telefonszam"
+                                aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="submit" name="submit" id="submit" class="btn btn-success"
+                            value="Változtatások mentése">
+                        <span></span>
+                        <input type="reset" class="btn btn-default" style="color: red;" value="Mégsem">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% include 'footer.html.twig' %}

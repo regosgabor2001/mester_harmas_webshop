@@ -1,0 +1,35 @@
+{% set header = logedin %}
+{% set activePage = "ferfi" %}
+{% include 'header.html.twig' with {'loginHeader': header, 'activePage': activePage} %}
+<head>
+	<link rel="stylesheet" href="/App/css/ferfi_oldal.css">
+</head>
+	<div class="container-sm">
+		<select class="form-select" id="kat_id" aria-label="Default select example" onchange="ferfiSzures()">
+			{% for kat in kategoria %}
+				{% if kat.id == aktualisKategoria %}
+					<option selected value="{{kat.id}}">{{kat.nev}}</option>
+				{% else %}
+					<option value="{{kat.id}}">{{kat.nev}}</option>
+				{% endif %}
+			{% endfor %}
+		</select>
+		<h5 class="display-3 text-left mt-5 page-title">Férfi termékek</h5>
+		<div class="row">
+			{% for ter in termek %}
+				<div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex align-items-stretch">
+					<div class="card" style="width: 280px;">
+						<img src="/App/images/Clothes/Men/{{ter.kep_nev}}" class="card-img-top" alt="item_picture">
+						<div class="card-body">
+							<h5 class="card-title h50">{{ter.nev}}</h5>
+							{% set formazottAr= ter.ar|number_format(0,',',' ') ~ ' Ft'%}
+							<p class="card-text">{{formazottAr}}</p>
+							<a href="/product/{{ter.id}}" class="btn btn-dark">Megtekintés</a>
+						</div>
+					</div>
+
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% include 'footer.html.twig' %}

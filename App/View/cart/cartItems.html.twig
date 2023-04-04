@@ -1,0 +1,121 @@
+{% set header = logedin %} {% include 'header.html.twig' with {'loginHeader': header} %}
+
+<head>
+    <link rel="stylesheet" href="/App/css/CartItemsPage.css">
+</head>
+<div class="container-sm">
+    <div class="row">
+        <div class="col-12 col-lg-8 col-xl-8">
+            <div class="div-border">
+                <div class="checkout-card">
+                    <div class="col-12">
+                        <h3 class="title_heading-h3">Kosár</h3>
+                    </div>
+                    {% if termek == 0 %}
+                    <h5 style="color:red;">A kosár üres!</h5>
+                    {% else %}
+                    {% set nevek = [] %}
+                    {% for ter in termek %}
+                    {% set formId= 'frm-' ~ ter.id ~ '-' ~ ter.meret_nev %}
+                    {% set kulcs= ter.id ~ '_' ~ ter.meret_id %}
+                    {% set nevek = nevek|merge([ter.nev]) %}
+                    <form id="{{formId}}">
+                        <input type="hidden" name="productId" value="{{ter.id}}">
+                        <input type="hidden" name="productAr" value="{{ter.ar}}">
+                        <input type="hidden" name="meret" value="{{ter.meret_id}}">
+                        <input type="hidden" name="mod" value="lecserel">
+                        <div class="col-12 ">
+                            <div class="card mb-5" style="max-width: 730px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="/App/images/Clothes/Men/{{ter.kep_nev}}" class="img-fluid rounded-start product-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-8">
+                                                    <p class="heading-strong">{{ter.markanev}}</p>
+                                                    <p class="product-name">{{ter.nev}}</p>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    {% set formazottAr= (ter.ar)|number_format(0,',',' ') ~ ' Ft/db'%} {% set formazottosszeg= (ter.ar*dbok[kulcs])|number_format(0,',',' ') ~ ' Ft'%}
+                                                    <p class="productPrice" id='{{termekAr}}'>{{formazottAr}}</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <span class="product-size">Méret:
+														{{ter.meret_nev}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <span>Mennyiség:</span>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <input onchange="mennyisegModositas('{{formId}}')" type="range" min="1" max="10" value="{{dbok[kulcs]}}" class="form-range kosarmennyiseg" step="1" id="mennyiseg" name="mennyiseg" ear="{{ter.ar}}" formid="{{formId}}">
+                                                    <span>{{dbok[kulcs]}} db</span>
+                                                    <p>{{formazottosszeg}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-8"></div>
+                                                <div class="col-sm-4">
+                                                    <a href="index.php?deleteCartItem={{ter.id}}&meretId={{ter.meret_id}}"><button type="button" class="trash-Button"><img class="trash-IMG" src="/App/images/trash.svg"  alt="trashIMG"></button></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12 col-lg-4 col-xl-4">
+            <div class="div-border">
+                <div class="checkout-card">
+                    <div class="col-12">
+                        <h3 class="title_heading-h3">Összegzés</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <p>A termékek összege</p>
+                        </div>
+                        <div class="col-sm-5">
+                        {% if termek == 0%}
+                        <p>0 Ft</p>
+                        {% else %}
+                            <p id="kosarOsszeg" class="WholeCartPrice">???</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="text-center">
+                            <form action="/cartPay" method="POST">
+                            {% for nev in nevek %}
+                                <input type="hidden" id="nevek" name="nevek[]" value="{{nev}}">
+                            {% endfor %}
+                                <input class="cart_Btn" type="submit" name="submit" id="submit" value="Menj a fizetéshez">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'footer.html.twig' %}
+<script>
+    function mennyisegModositas(formId) {
+        kosarbaTesz(formId);
+    }
+</script>
