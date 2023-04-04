@@ -1,0 +1,29 @@
+.container-xl{
+    margin-top: 6rem;
+}
+
+.gomb{
+    width: 200px;
+    font-size: 0.9rem;
+}
+
+.row {
+    margin-top: 2rem;
+}
+
+.urlap{
+    margin-top: 8rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 2px 2px 8px #aaaaaa;
+}
+
+.center{
+    margin: auto;
+}
+
+h3{
+    margin-bottom: 25px;
+    text-align: center;
+}

@@ -1,0 +1,54 @@
+.container-sm{
+  padding-top: 1rem;
+}
+
+.card{
+  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.card-body {
+  height: 8rem;
+}
+
+.form-select{
+  float: right;
+  width: fit-content;
+  margin-top: 2.3rem;
+}
+
+.page-title{
+  border-bottom: dotted;
+  border-bottom: medium dashed black;
+  font-size: 3rem;
+}
+
+@media (max-width: 575px){
+  .card{
+    margin: auto;
+    margin-top: 2rem;
+  }
+
+  .page-title{
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 380px){
+
+  .page-title{
+    font-size: 1.5rem;
+  }
+}
+
+

@@ -1,0 +1,75 @@
+.title_heading-h3 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.div-border {
+    margin-bottom: 24px;
+    padding: 32px;
+    --tw-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --tw-shadow-colored: 0 1px 3px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    background-color: #ffffff;
+}
+
+.container-sm {
+    margin-top: 100px;
+}
+
+.heading-strong {
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 2.6rem;
+    margin-bottom: 0;
+}
+
+.product-name {
+    color: #222222;
+    font-size: 2.2vh;
+    text-decoration: underline;
+}
+
+.cart_Btn {
+    border-width: 2px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    border-color: black;
+    background-color: whitesmoke;
+    border-radius: 0.5rem;
+}
+
+.cart_Btn:hover {
+    background-color: #5adbb5;
+}
+
+.card {
+    border: none;
+}
+
+.productPrice {
+    font-size: 1rem;
+    padding-top: 0.7rem;
+    float: right;
+}
+
+.WholeCartPrice {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.trash-IMG {
+    width: 1.5rem;
+    height: auto;
+}
+
+.kosarmennyiseg {
+    width: 50% !important;
+    margin-right: 25px;
+}
